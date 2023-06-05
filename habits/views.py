@@ -44,5 +44,11 @@ def edit_tracker(request, pk):
         form = TrackerForm(request.POST, instance=tracker)
         if form.is_valid():
             form.save()
-            return redirect(request, 'habits/user_info.html')
+            return redirect(request, 'tracker-details', pk=pk)
     return render(request, 'habits/edit_tracker.html', {'form': form})
+
+
+def delete_tracker(request, pk):
+    tracker = get_object_or_404(Tracker, pk=pk)
+    tracker.delete()
+    return redirect('habits/user_info.html')

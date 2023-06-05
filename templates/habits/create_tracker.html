@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Create New Tracker</h2>
-{% csrf_token %}
-{{ form.as_p }}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+</form>
+
+<button class="button-links" type="submit">submit</button>  
 {% endblock %}
