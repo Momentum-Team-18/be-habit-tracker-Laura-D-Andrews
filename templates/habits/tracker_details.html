@@ -2,7 +2,14 @@
 {% block content %}
 <h2>Tracker Details</h2>
 {{ tracker.name }}
+
 <div>Days/Week: {{tracker.number_days_week }}</div>
+
+{% if tracker.times_a_day %}
 <div>Times/Day: {{ tracker.times_a_day }}</div>
+{% endif %}
+
+{% if tracker.length_in_minutes %}
 <div>Minutes: {{ tracker.length_in_minutes }}</div>
+{% endif %}
 {% endblock %}

@@ -54,7 +54,7 @@ class Tracker(models.Model):
     name = models.CharField(max_length=100)
     number_days_week = models.IntegerField()
     times_a_day = models.IntegerField(blank=True, null=True)
-    length_in_minutes = models.FloatField(default=1.00, blank=True, null=True)
+    length_in_minutes = models.FloatField(default=0, blank=True, null=True)
     user = models.ForeignKey(
         to=User, on_delete=models.CASCADE, related_name='user_trackers')
 
