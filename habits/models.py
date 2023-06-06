@@ -50,6 +50,7 @@ class Tracker(models.Model):
         (HOUSEHOLD, 'household'),
 
     ]
+
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     name = models.CharField(max_length=100)
     number_days_week = models.IntegerField()

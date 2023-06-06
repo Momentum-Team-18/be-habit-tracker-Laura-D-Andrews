@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Albums by Artist{% endblock %}
+{% block header %}Albums by Artist{% endblock %}
+{% block content %}
+
+{% for artist in artists %}
+    <a href="{% url 'albums-artist' artist.pk %}">{{ tracker }}</a>
+{% endfor %}
+
+{% endblock %}
+{% block footer%}{% endblock %}
