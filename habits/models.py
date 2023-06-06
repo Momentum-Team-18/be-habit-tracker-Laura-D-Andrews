@@ -26,7 +26,7 @@ class User(AbstractUser):
         (CUSTOMER_SERVICE, 'customer service'),
         (SERVICE_INDUSTRY, 'service industry'),
         (SELF_EMPLOYED, 'self employed'),
-        (UNEMPLOYED, 'unembloyed'),
+        (UNEMPLOYED, 'unemployed'),
         (PARENT_OR_GUARDIAN, 'parent or guardian'),
         (STUDENT, 'student'),
 
