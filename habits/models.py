@@ -47,7 +47,7 @@ class Tracker(models.Model):
         (SLEEP, 'Sleep'),
         (HEALTH_WELLNESS, 'Health and Wellness'),
         (QUIT_BAD_HABIT, 'Quit a Bad Habit'),
-        (HOUSEHOLD, 'household'),
+        (HOUSEHOLD, 'Household'),
 
     ]
 
