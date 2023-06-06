@@ -3,7 +3,8 @@
 <h2>User Page</h2>
 
 {% for tracker in trackers %}
-<div class="tracker_list">{{ tracker.name }}</div>
+<div class="tracker_list"><a href="{% url 'tracker-detail' tracker.pk %}">{{ tracker.name }}</a></div>
+
 {% endfor %}
 
 {% endblock %}

@@ -12,4 +12,8 @@
 {% if tracker.length_in_minutes %}
 <div>Minutes: {{ tracker.length_in_minutes }}</div>
 {% endif %}
+<div class="button-links">
+<a href="{% url 'edit-tracker' tracker.pk %}">Edit</a>
+</div>
+
 {% endblock %}

@@ -44,7 +44,7 @@ def edit_tracker(request, pk):
         form = TrackerForm(request.POST, instance=tracker)
         if form.is_valid():
             form.save()
-            return redirect(request, 'tracker-details', pk=pk)
+            return redirect('tracker-detail', pk=pk)
     return render(request, 'habits/edit_tracker.html', {'form': form})
 
 
