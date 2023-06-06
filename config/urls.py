@@ -26,5 +26,5 @@ urlpatterns = [
     path('tracker/<int:pk>', views.tracker_detail, name='tracker-detail'),
     path('tracker/create', views.create_tracker, name='create-tracker'),
     path('tracker/<int:pk>/edit', views.edit_tracker, name='edit-tracker'),
-    path('tracker/<int:pk>/delete', views.delete_tracker, name="delete_tracker")
+    path('tracker/<int:pk>/delete', views.delete_tracker, name="delete-tracker")
 ]

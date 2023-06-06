@@ -51,4 +51,4 @@ def edit_tracker(request, pk):
 def delete_tracker(request, pk):
     tracker = get_object_or_404(Tracker, pk=pk)
     tracker.delete()
-    return redirect('habits/user_info.html')
+    return redirect('user-info', pk=pk)
