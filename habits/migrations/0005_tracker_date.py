@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='tracker',
             name='date',
-            field=models.DateField(default=1),
+            field=models.DateField(default='1988-02-07'),
             preserve_default=False,
         ),
     ]
