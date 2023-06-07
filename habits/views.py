@@ -36,14 +36,14 @@ def create_tracker(request, user_pk):
     return render(request, 'habits/create_tracker.html', {'form': form})
 
 
-def add_tracker_data(request):
+def add_goal_met_data(request, pk):
     if request.method == "GET":
         form = RecordForm()
     else:
         form = RecordForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(request, 'tracker-detail')
+            return redirect(request, 'tracker-detail', pk=pk)
     return render(request, 'habits/tracker_details.html', {'form': form})
 # form element is in inspect
 
