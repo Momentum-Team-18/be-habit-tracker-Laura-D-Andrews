@@ -40,13 +40,20 @@ class User(AbstractUser):
 
 
 class Tracker(models.Model):
-
-    GOAL_MET_CHOICES = [(False, 'No'), (True, 'yes')]
     goal = models.CharField(max_length=100)
-    date = models.DateField(default=timezone.now)
-    goal_met = models.BooleanField(default=False, choices=GOAL_MET_CHOICES)
     user = models.ForeignKey(
         to=User, on_delete=models.CASCADE, related_name='user_trackers')
 
     def __str__(self):
         return self.goal
+
+
+class Record(models.Model):
+    GOAL_MET_CHOICES = [(False, 'No'), (True, 'Yes')]
+    date = models.DateField(default=timezone.now)
+    goal_met = models.BooleanField(default=False, choices=GOAL_MET_CHOICES)
+    tracker = models.ForeignKey(
+        to=Tracker, on_delete=models.CASCADE, related_name='tracker_record', default=2)
+
+    def __str__(self):
+        return self.tracker

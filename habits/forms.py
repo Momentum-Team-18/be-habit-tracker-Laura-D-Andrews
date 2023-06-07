@@ -1,5 +1,5 @@
 from django import forms
-from .models import Tracker
+from .models import Tracker, Record
 
 
 class TrackerForm(forms.ModelForm):
@@ -10,5 +10,5 @@ class TrackerForm(forms.ModelForm):
 
 class RecordForm(forms.ModelForm):
     class Meta:
-        model = Tracker
+        model = Record
         fields = ('date', 'goal_met')

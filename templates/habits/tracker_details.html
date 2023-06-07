@@ -4,19 +4,18 @@
     <div>Goal: {{tracker.goal }}</div>
     <br>
     <div class="button-links">
-        <a href="{% url 'edit-tracker' tracker.pk %}">Edit</a>
+        <a href="{% url 'edit-tracker' tracker.pk %}">Edit Tracker</a>
     </div>
     <div class="button-links">
-        <a href="{% url 'delete-tracker' tracker.pk %}">Delete</a>
+        <a href="{% url 'delete-tracker' tracker.pk %}">Delete Tracker</a>
     </div>
     <br>
-    <h4>How's It Going?</h4>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button class="button-links" type="submit">Submit</button> 
-        </form>
+    <h4>Did You Meet Your Goal Today?</h4>
+    <div class="button-links">
+        <a href="{% url 'add-goal-met-data' tracker.pk %}">Make Submission</a>
+    </div>  
         <br>
+        {% for record in tracker.tracker_record.all %}
         <table class="primary">
             <thead>
                 <tr>
@@ -26,13 +25,19 @@
             <tbody>
                 <tr>
                     <td>Date</td>
-                    <td>{{ tracker.date }}</td>
+                    <td>{{ record.date }}</td>
                 </tr>
                 <tr>
                     <td>Goal Met?</td>
-                    <td>{{ tracker.goal_met }}</td>
+                    <td>{{ record.goal_met }}</td>
+                        {% if record.goal_met == True %}
+                        {% else %}
+
+                </tr>
+                <tr>
+                    <td><a href="{% url 'delete-submission' record.pk %}">Delete Record</a></td>
                 </tr>
             </tbody>
         </table>
-
+        {% endfor %}
 {% endblock %}

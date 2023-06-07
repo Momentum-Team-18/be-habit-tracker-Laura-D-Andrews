@@ -28,5 +28,10 @@ urlpatterns = [
          views.create_tracker, name='create-tracker'),
     path('tracker/<int:pk>/edit', views.edit_tracker, name='edit-tracker'),
     path('tracker/<int:pk>/delete', views.delete_tracker, name="delete-tracker"),
-    path('goal/<int:pk>', views.add_goal_met_data, name='add-goal-met-data'),
+    path('tracker/<int:pk>/goal',
+         views.add_goal_met_data, name='add-goal-met-data'),
+    path('tracker/<int:pk>/delete-submission',
+         views.delete_submission, name='delete-submission'),
+    path('record/<int:pk>/edit-submission',
+         views.edit_submission, name="edit-submission"),
 ]

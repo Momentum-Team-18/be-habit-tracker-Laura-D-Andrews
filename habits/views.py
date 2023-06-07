@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Tracker, User
+from .models import Tracker, User, Record
 from .forms import TrackerForm, RecordForm
 # Create your views here.
 
@@ -41,10 +41,12 @@ def add_goal_met_data(request, pk):
         form = RecordForm()
     else:
         form = RecordForm(request.POST)
+        record = form.save(commit=False)
+        record.tracker_id = pk
         if form.is_valid():
             form.save()
-            return redirect(request, 'tracker-detail', pk=pk)
-    return render(request, 'habits/tracker_details.html', {'form': form})
+            return redirect('tracker-detail', pk=pk)
+    return render(request, 'habits/add_goal_met_data.html', {'form': form})
 # form element is in inspect
 
 
@@ -64,4 +66,24 @@ def edit_tracker(request, pk):
 def delete_tracker(request, pk):
     tracker = get_object_or_404(Tracker, pk=pk)
     tracker.delete()
+    return redirect('home')
+
+
+def edit_submission(request, pk):
+    record = get_object_or_404(Record, pk=pk)
+    if request.method == "GET":
+        form = TrackerForm(instance=record)
+
+    else:
+        form = TrackerForm(request.POST, instance=record)
+        record = form.save(commit=False)
+        record.tracker_id = pk
+        form.save()
+        return redirect('tracker-detail', pk=pk)
+    return render(request, 'habits/edit_submission.html', {'form': form})
+
+
+def delete_submission(request, pk):
+    record = get_object_or_404(Record, pk=pk)
+    record.delete()
     return redirect('home')
