@@ -43,11 +43,9 @@ def add_goal_met_data(request, pk):
         form = RecordForm(request.POST)
         record = form.save(commit=False)
         record.tracker_id = pk
-        if form.is_valid():
-            form.save()
-            return redirect('tracker-detail', pk=pk)
+        form.save()
+        return redirect('tracker-detail', pk=pk)
     return render(request, 'habits/add_goal_met_data.html', {'form': form})
-# form element is in inspect
 
 
 def edit_tracker(request, pk):

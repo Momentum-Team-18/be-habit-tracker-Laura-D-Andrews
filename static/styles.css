@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700&family=Nunito+Sans:wght@300;600&family=Poppins:wght@100;200;300;400&family=Raleway:wght@100;300;400;600&family=Roboto+Mono:wght@500&family=Rubik:wght@300;400;600&family=Source+Sans+Pro:wght@200;400;600&display=swap');
 * {
-    font-family: poppins;  
+    font-family: poppins; 
 }
 
-.true {
+.false {
     border: 1px solid red;
     background-color: red;
     color: white;
@@ -11,17 +11,31 @@
    
 }
 
-.false {
+.true {
     border: 1px solid green;
     background-color: green;
     color: white;
     text-align: center;   
 }
 
-.container {
-    display: flex;
-}
-
 .primary {
     border-bottom: 1px solid black;
 }
+
+.button-links {
+    border: 2px solid black;
+    width: 150px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+a:link {
+    color: black;
+    text-decoration: none; 
+}
+
+a:visited {
+    color: black;
+    text-decoration: none; 
+}
+
