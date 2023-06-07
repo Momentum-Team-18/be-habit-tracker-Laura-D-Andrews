@@ -15,29 +15,35 @@
         <a href="{% url 'add-goal-met-data' tracker.pk %}">Make Submission</a>
     </div>  
         <br>
+    <div class="container">
         {% for record in tracker.tracker_record.all %}
         <table class="primary">
             <thead>
                 <tr>
-                    <th>Tracker Record</th>
+                    <th>Entry #</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
+
                     <td>Date</td>
                     <td>{{ record.date }}</td>
                 </tr>
                 <tr>
                     <td>Goal Met?</td>
-                    <td>{{ record.goal_met }}</td>
-                        {% if record.goal_met == True %}
+                    <td>{% if record.goal_met == True %}
+                            <div class="true">Yes</div>
                         {% else %}
-
+                            <div class="false">No</div>
+                    </td>
                 </tr>
+                {% endif %}
                 <tr>
+                <br>
                     <td><a href="{% url 'delete-submission' record.pk %}">Delete Record</a></td>
                 </tr>
             </tbody>
         </table>
+    </div>
         {% endfor %}
 {% endblock %}

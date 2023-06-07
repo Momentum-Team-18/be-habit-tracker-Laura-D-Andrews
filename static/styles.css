@@ -2,3 +2,26 @@
 * {
     font-family: poppins;  
 }
+
+.true {
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+    text-align: center;
+   
+}
+
+.false {
+    border: 1px solid green;
+    background-color: green;
+    color: white;
+    text-align: center;   
+}
+
+.container {
+    display: flex;
+}
+
+.primary {
+    border-bottom: 1px solid black;
+}
