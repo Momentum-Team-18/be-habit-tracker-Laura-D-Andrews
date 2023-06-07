@@ -1,9 +1,14 @@
 from django import forms
-from .models import User, Tracker
+from .models import Tracker
 
 
 class TrackerForm(forms.ModelForm):
     class Meta:
         model = Tracker
-        fields = ('category', 'name', 'number_days_week',
-                  'times_a_day', 'length_in_minutes')
+        fields = ('goal',)
+
+
+class RecordForm(forms.ModelForm):
+    class Meta:
+        model = Tracker
+        fields = ('date', 'goal_met')

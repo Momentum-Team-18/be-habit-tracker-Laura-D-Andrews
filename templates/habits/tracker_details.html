@@ -1,22 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Tracker Details</h2>
-{{ tracker.name }}
-
-<div>Days/Week: {{tracker.number_days_week }}</div>
-
-{% if tracker.times_a_day %}
-<div>Times/Day: {{ tracker.times_a_day }}</div>
-{% endif %}
-
-{% if tracker.length_in_minutes %}
-<div>Minutes: {{ tracker.length_in_minutes }}</div>
-{% endif %}
-<div class="button-links">
-<a href="{% url 'edit-tracker' tracker.pk %}">Edit</a>
-</div>
-<div class="button-links">
-    <a href="{% url 'delete-tracker' tracker.pk %}">Delete</a>
-</div>
+    <div>Goal: {{tracker.goal }}</div>
+    <br>
+    <div class="button-links">
+        <a href="{% url 'edit-tracker' tracker.pk %}">Edit</a>
+    </div>
+    <div class="button-links">
+        <a href="{% url 'delete-tracker' tracker.pk %}">Delete</a>
+    </div>
+    <br>
+    <h4>How's It Going?</h4>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="button-links" type="submit">submit</button> 
+        </form>
+        <br>
+        <table class="primary">
+            <thead>
+                <tr>
+                    <th>Tracker Record</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Date</td>
+                    <td>{{ tracker.date }}</td>
+                </tr>
+                <tr>
+                    <td>Goal Met?</td>
+                    <td>{{ tracker.goal_met }}</td>
+                </tr>
+            </tbody>
+        </table>
 
 {% endblock %}

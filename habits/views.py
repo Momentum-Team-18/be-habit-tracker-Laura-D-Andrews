@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Tracker, User
-from .forms import TrackerForm
+from .forms import TrackerForm, RecordForm
 # Create your views here.
 
 
@@ -23,16 +23,29 @@ def tracker_detail(request, pk):
     return render(request, 'habits/tracker_details.html', {'tracker': tracker})
 
 
-def create_tracker(request):
+def create_tracker(request, user_pk):
     if request.method == "GET":
         form = TrackerForm()
 
     else:
         form = TrackerForm(request.POST)
+        tracker = form.save(commit=False)
+        tracker.user_id = user_pk
+        tracker.save()
+        return redirect('user-info', user_pk)
+    return render(request, 'habits/create_tracker.html', {'form': form})
+
+
+def add_tracker_data(request):
+    if request.method == "GET":
+        form = RecordForm()
+    else:
+        form = RecordForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(request, 'habits/user_info.html')
-    return render(request, 'habits/create_tracker.html', {'form': form})
+            return redirect(request, 'tracker-detail')
+    return render(request, 'habits/tracker_details.html', {'form': form})
+# form element is in inspect
 
 
 def edit_tracker(request, pk):
@@ -51,4 +64,4 @@ def edit_tracker(request, pk):
 def delete_tracker(request, pk):
     tracker = get_object_or_404(Tracker, pk=pk)
     tracker.delete()
-    return redirect('user-info', pk=pk)
+    return redirect('home')

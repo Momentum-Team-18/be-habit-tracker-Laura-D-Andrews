@@ -3,8 +3,11 @@
 <h2>User Page</h2>
 
 {% for tracker in trackers %}
-<div class="tracker_list"><a href="{% url 'tracker-detail' tracker.pk %}">{{ tracker.name }}</a></div>
-
+<div class="tracker_list"><a href="{% url 'tracker-detail' tracker.pk %}">{{ tracker.goal }}</a></div>
 {% endfor %}
+<br>
+<div class="button-links">
+    <a href="{% url 'create-tracker' user.pk %}">Add Tracker</a>
+</div>
 
 {% endblock %}

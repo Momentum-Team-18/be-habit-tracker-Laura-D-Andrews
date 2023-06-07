@@ -1,6 +1,7 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
 # Create your models here.
 
 
@@ -16,6 +17,7 @@ class User(AbstractUser):
     UNEMPLOYED = 'UNEMP'
     PARENT_OR_GUARDIAN = 'POG'
     STUDENT = 'ST'
+    OTHER = 'OT'
 
     OCCUPATION_CHOICES = [
         (HEALTHCARE, 'healthcare'),
@@ -29,6 +31,7 @@ class User(AbstractUser):
         (UNEMPLOYED, 'unemployed'),
         (PARENT_OR_GUARDIAN, 'parent or guardian'),
         (STUDENT, 'student'),
+        (OTHER, 'other'),
 
     ]
     birthdate = models.DateField(blank=True, null=True)
@@ -37,28 +40,13 @@ class User(AbstractUser):
 
 
 class Tracker(models.Model):
-    FITNESS = 'FIT'
-    SLEEP = 'SL'
-    HEALTH_WELLNESS = 'HW'
-    QUIT_BAD_HABIT = 'QBH'
-    HOUSEHOLD = 'HH'
 
-    CATEGORY_CHOICES = [
-        (FITNESS, 'Fitness'),
-        (SLEEP, 'Sleep'),
-        (HEALTH_WELLNESS, 'Health and Wellness'),
-        (QUIT_BAD_HABIT, 'Quit a Bad Habit'),
-        (HOUSEHOLD, 'Household'),
-
-    ]
-
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
-    name = models.CharField(max_length=100)
-    number_days_week = models.IntegerField()
-    times_a_day = models.IntegerField(blank=True, null=True)
-    length_in_minutes = models.FloatField(default=0, blank=True, null=True)
+    GOAL_MET_CHOICES = [(False, 'No'), (True, 'yes')]
+    goal = models.CharField(max_length=100)
+    date = models.DateField(default=timezone.now)
+    goal_met = models.BooleanField(default=False, choices=GOAL_MET_CHOICES)
     user = models.ForeignKey(
         to=User, on_delete=models.CASCADE, related_name='user_trackers')
 
     def __str__(self):
-        return self.name
+        return self.goal
