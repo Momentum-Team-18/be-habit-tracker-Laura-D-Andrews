@@ -44,7 +44,7 @@ def add_goal_met_data(request, pk):
         record = form.save(commit=False)
         record.tracker_id = pk
         form.save()
-        return redirect('tracker-detail', pk=pk)
+        return redirect('tracker-detail', pk)
     return render(request, 'habits/add_goal_met_data.html', {'form': form})
 
 
@@ -57,7 +57,7 @@ def edit_tracker(request, pk):
         form = TrackerForm(request.POST, instance=tracker)
         if form.is_valid():
             form.save()
-            return redirect('tracker-detail', pk=pk)
+            return redirect('tracker-detail', pk)
     return render(request, 'habits/edit_tracker.html', {'form': form})
 
 

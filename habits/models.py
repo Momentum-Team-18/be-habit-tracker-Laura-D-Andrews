@@ -5,7 +5,7 @@ from django.utils import timezone
 # Create your models here.
 
 
-class User(AbstractUser):
+class Profile(models.Model):
     HEALTHCARE = 'HC'
     EDUCATION = 'ED'
     TECH_INDUSTRY = 'TECH'
@@ -32,11 +32,15 @@ class User(AbstractUser):
         (PARENT_OR_GUARDIAN, 'parent or guardian'),
         (STUDENT, 'student'),
         (OTHER, 'other'),
-
     ]
-    birthdate = models.DateField(blank=True, null=True)
     postcode = models.IntegerField(blank=True, null=True)
     occupation = models.CharField(max_length=30, choices=OCCUPATION_CHOICES)
+    birthdate = models.DateField(blank=True, null=True)
+
+
+class User(AbstractUser):
+    profile = models.OneToOneField(
+        to=Profile, on_delete=models.CASCADE, blank=True, null=True)
 
 
 class Tracker(models.Model):
