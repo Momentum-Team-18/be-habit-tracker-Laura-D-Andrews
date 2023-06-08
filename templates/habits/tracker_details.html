@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
+{% load mathfilters %}
 {% block content %}
 <h2>Tracker Details</h2>
     <div class="goal-text">Goal: {{tracker.goal }}</div>
     <br>
-
-
     <div class="button-links">
         <a href="{% url 'edit-tracker' tracker.pk %}">Edit Tracker</a>
     </div>
@@ -20,6 +19,7 @@
         <a href="{% url 'add-goal-met-data' tracker.pk %}">Make Submission</a>
     </div>  
         <br>
+    
     <div class="container">
         {% for record in tracker.tracker_record.all %}
         <table class="primary">
@@ -31,10 +31,10 @@
             </thead>
             <tbody>
                 <tr>
-
+                    
                     <td>Record Number:</td>
                     <td>{{ record.record_number }}</td>
-                    
+                        
                 </tr>
                 <tr>
                     <td>Goal Met:</td>
@@ -46,7 +46,7 @@
                 </tr>
                 {% endif %}
                 <tr>
-                    <td class="edit-record-link">Edit</td>
+                    <td class="edit-record-link"><a href="{% url 'edit-submission' record.pk %}">Edit</a></td>
                     <td class="delete-record-link"><a href="{% url 'delete-submission' record.pk %}">Delete</a></td>
                 </tr>
             </tbody>

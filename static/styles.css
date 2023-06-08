@@ -64,3 +64,28 @@ a:visited {
     text-align: center;
     border-radius: 0.5em;
 }
+
+
+.tracker-list {
+    font-size: 24px;
+}
+
+.created-at {
+    color: green;
+    font-size: 20px;
+}
+.individual-container {
+    display: flex; 
+    justify-content: space-between;
+    width: 1000px;
+    border: 2px solid black;
+    border-radius: 0.5em;
+    margin-top: 20px;
+   
+}
+
+h2 {
+    text-align: center;
+    margin: 0 auto;
+    
+}

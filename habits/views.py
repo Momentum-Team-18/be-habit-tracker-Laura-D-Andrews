@@ -40,6 +40,7 @@ def add_goal_met_data(request, pk):
     if request.method == "GET":
         form = RecordForm()
     else:
+
         form = RecordForm(request.POST)
         record = form.save(commit=False)
         record.tracker_id = pk

@@ -45,6 +45,7 @@ class User(AbstractUser):
 
 class Tracker(models.Model):
     goal = models.CharField(max_length=100)
+    created_at = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(
         to=User, on_delete=models.CASCADE, related_name='user_trackers')
 

@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Your Trackers</h2>
-
+<div class="list-container">
 {% for tracker in trackers %}
-<div class="tracker_list"><a href="{% url 'tracker-detail' tracker.pk %}">{{ tracker.goal }}</a></div>
+<div class="individual-container">
+<div class="tracker-list"><a href="{% url 'tracker-detail' tracker.pk %}">{{ tracker.goal }}</a></div>
+<div class="created-at">Est. {{ tracker.created_at }}</div>
+</div>
 {% endfor %}
+</div>
 <br>
 <div class="button-links">
     <a href="{% url 'create-tracker' user.pk %}">Add Tracker</a>
