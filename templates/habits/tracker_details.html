@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Tracker Details</h2>
-    <div>Goal: {{tracker.goal }}</div>
+    <div class="goal-text">Goal: {{tracker.goal }}</div>
     <br>
     <div class="button-links">
         <a href="{% url 'edit-tracker' tracker.pk %}">Edit Tracker</a>
     </div>
     <div class="button-links">
         <a href="{% url 'delete-tracker' tracker.pk %}">Delete Tracker</a>
+    </div>
+    <div class="button-links">
+        <a href="{% url 'user-info' user.pk %}">Home</a>
     </div>
     <br>
     <h4>Did You Meet Your Goal Today?</h4>
@@ -20,14 +23,15 @@
         <table class="primary">
             <thead>
                 <tr>
-                    <th>Entry Number</th>
+                    <th>Date:</th>
+                    <th>{{ record.date }}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
 
-                    <td>Date:</td>
-                    <td>{{ record.date }}</td>
+                    <td>Record Number:</td>
+                    
                 </tr>
                 <tr>
                     <td>Goal Met:</td>
@@ -39,11 +43,12 @@
                 </tr>
                 {% endif %}
                 <tr>
-                <br>
-                    <td><a href="{% url 'delete-submission' record.pk %}">Delete Record</a></td>
+                    <td class="edit-record-link">Edit</td>
+                    <td class="delete-record-link"><a href="{% url 'delete-submission' record.pk %}">Delete</a></td>
                 </tr>
             </tbody>
         </table>
+        <br>
     </div>
         {% endfor %}
 {% endblock %}
