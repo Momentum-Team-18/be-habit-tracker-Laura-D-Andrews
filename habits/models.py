@@ -55,12 +55,19 @@ class RecordManager(models.Manager):
 
 class Record(models.Model):
     GOAL_MET_CHOICES = [(False, 'No'), (True, 'Yes')]
+    record_number = models.IntegerField(default=0)
     date = models.DateField(default=timezone.now)
     date_objects = RecordManager()
     goal_met = models.BooleanField(default=False, choices=GOAL_MET_CHOICES)
     tracker = models.ForeignKey(
         to=Tracker, on_delete=models.CASCADE, related_name='tracker_record',
         default=2)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['date', 'tracker'], name='unique_constraint')
+        ]
 
     def __str__(self):
         return self.tracker

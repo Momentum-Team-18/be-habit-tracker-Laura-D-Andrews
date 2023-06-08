@@ -11,4 +11,4 @@ class TrackerForm(forms.ModelForm):
 class RecordForm(forms.ModelForm):
     class Meta:
         model = Record
-        fields = ('date', 'goal_met')
+        fields = ('date', 'goal_met', 'record_number')

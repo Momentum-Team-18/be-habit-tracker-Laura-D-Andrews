@@ -69,19 +69,20 @@ def delete_tracker(request, pk):
 
 def edit_submission(request, pk):
     record = get_object_or_404(Record, pk=pk)
+    tracker_pk = record.tracker_id
     if request.method == "GET":
-        form = TrackerForm(instance=record)
+        form = RecordForm(instance=record)
 
     else:
-        form = TrackerForm(request.POST, instance=record)
+        form = RecordForm(request.POST, instance=record)
         record = form.save(commit=False)
-        record.tracker_id = pk
-        form.save()
-        return redirect('tracker-detail', pk=pk)
+        record.save()
+        return redirect('tracker-detail', tracker_pk)
     return render(request, 'habits/edit_submission.html', {'form': form})
 
 
 def delete_submission(request, pk):
     record = get_object_or_404(Record, pk=pk)
+    tracker_pk = record.tracker_id
     record.delete()
-    return redirect('home')
+    return redirect('tracker-detail', tracker_pk)
