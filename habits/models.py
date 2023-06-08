@@ -48,12 +48,19 @@ class Tracker(models.Model):
         return self.goal
 
 
+class RecordManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().order_by('-date')
+
+
 class Record(models.Model):
     GOAL_MET_CHOICES = [(False, 'No'), (True, 'Yes')]
     date = models.DateField(default=timezone.now)
+    date_objects = RecordManager()
     goal_met = models.BooleanField(default=False, choices=GOAL_MET_CHOICES)
     tracker = models.ForeignKey(
-        to=Tracker, on_delete=models.CASCADE, related_name='tracker_record', default=2)
+        to=Tracker, on_delete=models.CASCADE, related_name='tracker_record',
+        default=2)
 
     def __str__(self):
         return self.tracker
