@@ -12,6 +12,7 @@ django-environ = "*"
 whitenoise = "*"
 gunicorn = "*"
 django-mathfilters = "*"
+django-filter = "*"
 
 [dev-packages]
 

@@ -1,7 +1,9 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models.query import QuerySet
 from django.utils import timezone
+import django_filters
 # Create your models here.
 
 
@@ -59,16 +61,25 @@ class Tracker(models.Model):
         return self.goal
 
 
+class RecordQuerySet(models.QuerySet):
+
+    def get_bool_count(self):
+        return self.filter(goal_met=True)
+
+
 class RecordManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().order_by('-date')
+
+    def get_bool_count(self):
+        return self.get_queryset().get_bool_count()
 
 
 class Record(models.Model):
     GOAL_MET_CHOICES = [(False, 'No'), (True, 'Yes')]
     record_number = models.IntegerField(default=0)
     date = models.DateField(default=timezone.now)
-    date_objects = RecordManager()
+    objects = RecordManager()
     goal_met = models.BooleanField(default=False, choices=GOAL_MET_CHOICES)
     tracker = models.ForeignKey(
         to=Tracker, on_delete=models.CASCADE, related_name='tracker_record',

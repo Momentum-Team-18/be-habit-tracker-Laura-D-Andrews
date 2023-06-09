@@ -14,11 +14,19 @@
         <a href="{% url 'user-info' user.pk %}">Home</a>
     </div>
     <br>
+    
+    <h1>{{ occurances }}</h1>
+    
+   
+   
+    
     <h4>Did You Meet Your Goal Today?</h4>
     <div class="button-links">
         <a href="{% url 'add-goal-met-data' tracker.pk %}">Make Submission</a>
     </div>  
         <br>
+
+        <div>{{ record.goal_met_objects }}</div>
     
     <div class="container">
         {% for record in tracker.tracker_record.all %}

@@ -73,6 +73,7 @@ a:visited {
 .created-at {
     color: green;
     font-size: 20px;
+    padding-right: 15px;
 }
 .individual-container {
     display: flex; 
@@ -80,7 +81,8 @@ a:visited {
     width: 1000px;
     border: 2px solid black;
     border-radius: 0.5em;
-    margin-top: 20px;
+    margin: auto;
+    padding: 10px; 
    
 }
 
@@ -88,4 +90,12 @@ h2 {
     text-align: center;
     margin: 0 auto;
     
+}
+
+.home-link {
+    border: 2px solid black;
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 0.5em;
 }
