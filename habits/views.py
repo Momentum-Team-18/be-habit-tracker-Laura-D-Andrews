@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Tracker, User, Record
-from .forms import TrackerForm, RecordForm
+from .models import Tracker, User, Record, Profile
+from .forms import TrackerForm, RecordForm, ProfileForm
 # Create your views here.
 
 
@@ -16,6 +16,37 @@ def user_info(request, pk):
         'trackers': trackers,
     }
     return render(request, 'habits/user_info.html', context)
+
+
+def profile_details(request, pk):
+    profile = get_object_or_404(Profile, pk=pk)
+    return render(request, 'habits/profile_details.html', {'profile': profile})
+
+
+def profile_add(request, profile_pk):
+    if request.method == "GET":
+        form = ProfileForm()
+
+    else:
+        form = ProfileForm(request.POST)
+        profile = form.save(commit=False)
+        profile.user_id = profile_pk
+        profile.save()
+        return redirect('user-info', profile_pk)
+    return render(request, 'habits/profile_add.html', {'form': form})
+
+
+# def profile_edit(request, pk):
+#     profile = get_object_or_404(Profile, pk=pk)
+#     if request.method == "GET":
+#         form = ProfileForm(instance=profile)
+
+#     else:
+#         form = ProfileForm(request.POST, instance=profile)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('user_info', pk)
+#     return render(request, 'habits/profile_edit.html', {'form': form})
 
 
 def tracker_detail(request, pk):

@@ -3,9 +3,11 @@
 <h2>Habit Tracker</h2>
 {% if user.is_authenticated %}
     <h2>Hello!</h2>
-<div class="button-links"><a href="{% url 'user-info' user.pk %}">Go To Your Trackers</a></div>
-{% else %}
+        <div class="button-links">
+            <a href="{% url 'user-info' user.pk %}">Go To Tracker List</a>
+        </div>
+        {% else %}
     <h2>You need to login or register</h2>
-{% endif %}
+        {% endif %}
 
-{% endblock %}
+        {% endblock %}

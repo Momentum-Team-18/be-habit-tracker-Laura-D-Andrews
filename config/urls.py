@@ -23,6 +23,8 @@ urlpatterns = [
     path('accounts/', include('registration.backends.simple.urls')),
     path('', views.index, name='home'),
     path('user/<int:pk>', views.user_info, name='user-info'),
+    path('profile/<int:pk>', views.profile_details, name="profile-details"),
+    path('profile/<int:profile_pk>/add', views.profile_add, name="profile-add"),
     path('tracker/<int:pk>', views.tracker_detail, name='tracker-detail'),
     path('tracker/<int:user_pk>/create',
          views.create_tracker, name='create-tracker'),

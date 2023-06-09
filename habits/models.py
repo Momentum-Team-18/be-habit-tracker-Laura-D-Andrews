@@ -5,6 +5,14 @@ from django.utils import timezone
 # Create your models here.
 
 
+class User(AbstractUser):
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['username', 'email'], name='user_constraint')]
+
+
 class Profile(models.Model):
     HEALTHCARE = 'HC'
     EDUCATION = 'ED'
@@ -36,11 +44,9 @@ class Profile(models.Model):
     postcode = models.IntegerField(blank=True, null=True)
     occupation = models.CharField(max_length=30, choices=OCCUPATION_CHOICES)
     birthdate = models.DateField(blank=True, null=True)
-
-
-class User(AbstractUser):
-    profile = models.OneToOneField(
-        to=Profile, on_delete=models.CASCADE, blank=True, null=True)
+    user = models.ForeignKey(
+        to=User, on_delete=models.CASCADE, related_name="user_profile",
+        blank=True, null=True)
 
 
 class Tracker(models.Model):
@@ -71,7 +77,7 @@ class Record(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=['date', 'tracker'], name='unique_constraint')
+                fields=['date', 'tracker'], name='tracker_constraint')
         ]
 
     def __str__(self):

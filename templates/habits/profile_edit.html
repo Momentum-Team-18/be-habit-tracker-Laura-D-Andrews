@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Edit Tracker</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+<button class="myCoolButton" type="submit">submit</button> 
+</form>
+{% endblock %}
