@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700&family=Nunito+Sans:wght@300;600&family=Poppins:wght@100;200;300;400&family=Raleway:wght@100;300;400;600&family=Roboto+Mono:wght@500&family=Rubik:wght@300;400;600&family=Source+Sans+Pro:wght@200;400;600&display=swap');
 * {
     font-family: poppins; 
-    margin-left: 10px;
+    margin: 10px;
 }
 
 .false {
@@ -31,7 +31,7 @@
 
 .button-links {
     border: 2px solid black;
-    width: 200px;
+    width: 400px;
     margin-bottom: 10px;
     text-align: center;
     border-radius: 0.5em;
@@ -59,7 +59,7 @@ a:visited {
 .myCoolButton {
     background-color: black;
     color: white;
-    width: 200px;
+    width: 400px;
     margin-bottom: 10px;
     text-align: center;
     border-radius: 0.5em;
@@ -98,4 +98,12 @@ h2 {
     margin: 0 auto;
     text-align: center;
     border-radius: 0.5em;
+}
+
+.good-average {
+    color: green;
+}
+
+.bad-average {
+    color: red;
 }

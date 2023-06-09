@@ -51,9 +51,12 @@ def profile_add(request, profile_pk):
 
 def tracker_detail(request, pk):
     tracker = get_object_or_404(Tracker, pk=pk)
-    occurances = Record.objects.filter(goal_met=True, tracker_id=pk).count
+    true_occurences = Record.objects.filter(goal_met=True, tracker_id=pk).count
+    false_occurences = Record.objects.filter(
+        goal_met=False, tracker_id=pk).count
     context = {
-        'occurances': occurances,
+        'true_occurences': true_occurences,
+        'false_occurences': false_occurences,
         'tracker': tracker,
     }
     return render(request, 'habits/tracker_details.html', context)
