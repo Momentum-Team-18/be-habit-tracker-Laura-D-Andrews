@@ -31,7 +31,7 @@
 
 .button-links {
     border: 2px solid black;
-    width: 400px;
+    width: 350px;
     margin-bottom: 10px;
     text-align: center;
     border-radius: 0.5em;
@@ -84,6 +84,26 @@ a:visited {
     margin: auto;
     padding: 10px; 
    
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.record-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.action-container {
+    display: flex;
+    align-items: center;
+}
+
+.middle-container {
+    display: flex;
+    justify-content:space-evenly
 }
 
 h2 {
