@@ -32,9 +32,10 @@
 .button-links {
     border: 2px solid black;
     width: 350px;
-    margin-bottom: 10px;
+    margin: 0 auto; 
     text-align: center;
     border-radius: 0.5em;
+
 }
 
 a:link {
@@ -89,6 +90,7 @@ a:visited {
 .main-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .record-container {
@@ -121,9 +123,21 @@ h2 {
 }
 
 .good-average {
-    color: green;
+    color: white;
+    background-color: green;
+    width: 350px;
+    
+    text-align: center;
+    border-radius: 0.5em;
+    font-size: 12px;
 }
 
 .bad-average {
-    color: red;
+    color: white;
+    background-color: red;
+    width: 350px;
+    
+    text-align: center;
+    border-radius: 0.5em;
+    font-size: 12px;
 }

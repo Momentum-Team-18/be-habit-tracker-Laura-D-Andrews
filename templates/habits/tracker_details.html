@@ -24,7 +24,7 @@
                 </div>  
             </div>
             <div>
-                <h3>Average goal met/not met</h3>
+                <h3>Average goal met/not met:</h3>
                 {% if true_occurences|div:false_occurences >= 0.5 %}
                 <h3 class="good-average">{{ true_occurences|div:false_occurences }}</h3>
                 {% else %}
