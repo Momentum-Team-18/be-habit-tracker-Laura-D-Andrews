@@ -18,21 +18,16 @@ def user_info(request, pk):
     return render(request, 'habits/user_info.html', context)
 
 
-def profile_details(request, pk):
-    profile = get_object_or_404(Profile, pk=pk)
-    return render(request, 'habits/profile_details.html', {'profile': profile})
-
-
-def profile_add(request, profile_pk):
+def profile_add(request, user_pk):
     if request.method == "GET":
         form = ProfileForm()
 
     else:
         form = ProfileForm(request.POST)
         profile = form.save(commit=False)
-        profile.user_id = profile_pk
+        profile.user_id = user_pk
         profile.save()
-        return redirect('user-info', profile_pk)
+        return redirect('user-info', user_pk)
     return render(request, 'habits/profile_add.html', {'form': form})
 
 
@@ -47,6 +42,9 @@ def profile_add(request, profile_pk):
 #             form.save()
 #             return redirect('user_info', pk)
 #     return render(request, 'habits/profile_edit.html', {'form': form})
+def profile_details(request, pk):
+    profile = get_object_or_404(Profile, pk=pk)
+    return render(request, 'habits/profile_details.html', {'profile': profile})
 
 
 def tracker_detail(request, pk):

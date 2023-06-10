@@ -13,5 +13,23 @@
 <div class="button-links">
     <a href="{% url 'create-tracker' user.pk %}">Add Tracker</a>
 </div>
+<br>
+<br>
+
+<h2>Profile</h2>
+<div class="profile-info">
+    <p>Username: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Birthday: {{ profile.birthdate }}</p> 
+    <p>Postal Code: {{ profile.postcode }}</p>
+    <p>Occupation: {{ profile.occupation }}</p>
+</div>
+<div class="button-links">
+    <a href="{% url 'profile-add' user.pk %}">Add Profile Details</a>
+</div>
+
+
+
+
 
 {% endblock %}

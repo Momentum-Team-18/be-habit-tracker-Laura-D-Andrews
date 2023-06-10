@@ -13,6 +13,7 @@ class RecordForm(forms.ModelForm):
         model = Record
         fields = ('date', 'goal_met', 'record_number')
 
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile

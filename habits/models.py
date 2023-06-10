@@ -8,7 +8,6 @@ import django_filters
 
 
 class User(AbstractUser):
-
     class Meta:
         constraints = [
             models.UniqueConstraint(
