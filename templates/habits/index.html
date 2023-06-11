@@ -2,8 +2,9 @@
 {% block content %}
 <h2>Welcome to Habit Tracker</h2>
 {% if user.is_authenticated %}
+    <br>    
         <div class="home-link">
-            <a href="{% url 'user-info' user.pk %}">Go To Your Tracker List</a>
+            <a href="{% url 'user-info' user.pk %}">Go To Your Profile and Tracker List</a>
         </div>
         {% else %}
     <h2>You need to login or register</h2>

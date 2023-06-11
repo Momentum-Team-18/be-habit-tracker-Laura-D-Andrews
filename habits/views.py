@@ -10,10 +10,12 @@ def index(request):
 
 def user_info(request, pk):
     trackers = Tracker.objects.filter(user_id=pk)
+    profile = Profile.objects.all()
     user = get_object_or_404(User, pk=pk)
     context = {
         'user': user,
         'trackers': trackers,
+        'profile': profile,
     }
     return render(request, 'habits/user_info.html', context)
 
@@ -21,7 +23,6 @@ def user_info(request, pk):
 def profile_add(request, user_pk):
     if request.method == "GET":
         form = ProfileForm()
-
     else:
         form = ProfileForm(request.POST)
         profile = form.save(commit=False)
@@ -31,17 +32,19 @@ def profile_add(request, user_pk):
     return render(request, 'habits/profile_add.html', {'form': form})
 
 
-# def profile_edit(request, pk):
-#     profile = get_object_or_404(Profile, pk=pk)
-#     if request.method == "GET":
-#         form = ProfileForm(instance=profile)
+def profile_edit(request, pk):
+    profile = get_object_or_404(Profile, user_id=pk)
+    if request.method == "GET":
+        form = ProfileForm(instance=profile)
 
-#     else:
-#         form = ProfileForm(request.POST, instance=profile)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('user_info', pk)
-#     return render(request, 'habits/profile_edit.html', {'form': form})
+    else:
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            profile.save()
+            return redirect('user-info', pk=pk)
+    return render(request, 'habits/profile_edit.html', {'form': form})
+
+
 def profile_details(request, pk):
     profile = get_object_or_404(Profile, pk=pk)
     return render(request, 'habits/profile_details.html', {'profile': profile})
