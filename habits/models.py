@@ -60,18 +60,9 @@ class Tracker(models.Model):
         return self.goal
 
 
-class RecordQuerySet(models.QuerySet):
-
-    def get_bool_count(self):
-        return self.filter(goal_met=True)
-
-
 class RecordManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().order_by('-date')
-
-    def get_bool_count(self):
-        return self.get_queryset().get_bool_count()
 
 
 class Record(models.Model):
@@ -79,7 +70,7 @@ class Record(models.Model):
     record_number = models.IntegerField(default=0)
     date = models.DateField(default=timezone.now)
     objects = RecordManager()
-    goal_met = models.BooleanField(default=False, choices=GOAL_MET_CHOICES)
+    goal_met = models.BooleanField(default=True, choices=GOAL_MET_CHOICES)
     tracker = models.ForeignKey(
         to=Tracker, on_delete=models.CASCADE, related_name='tracker_record',
         default=2)
