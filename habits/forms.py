@@ -1,5 +1,5 @@
 from django import forms
-from .models import Tracker, Record, Profile, Follower
+from .models import Tracker, Record, Profile, Follow
 
 
 class TrackerForm(forms.ModelForm):
@@ -20,7 +20,7 @@ class ProfileForm(forms.ModelForm):
         fields = ('birthdate', 'occupation', 'postcode')
 
 
-class FollowerForm(forms.ModelForm):
+class FollowForm(forms.ModelForm):
     class Meta:
-        model: Follower
-        fields = ('username')
+        model = Follow
+        fields = ('username',)

@@ -1,9 +1,8 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.db.models.query import QuerySet
 from django.utils import timezone
-import django_filters
+
 # Create your models here.
 
 
@@ -11,7 +10,7 @@ class User(AbstractUser):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=['username', 'email'], name='user_constraint')]
+                fields=['email'], name='user_constraint')]
 
 
 class Profile(models.Model):
@@ -85,7 +84,7 @@ class Record(models.Model):
         return self.tracker
 
 
-class Follower(models.Model):
+class Follow(models.Model):
     username = models.CharField(max_length=20)
     user = models.ForeignKey(
         to=User, on_delete=models.CASCADE, related_name='user_follower')

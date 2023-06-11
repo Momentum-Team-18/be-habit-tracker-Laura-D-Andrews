@@ -16,6 +16,7 @@
 </div>
 <br>
 <br>
+<br>
 
 <h2>Profile</h2>
 <div class="profile-box">
@@ -38,14 +39,17 @@
     <a href="{% url 'profile-edit' user.pk %}">Edit Profile Details</a>
 </div>
 <br>
+<br>
+<br>
 
 <h2>Followers</h2>
-{% for follower in followers %}
-<div>{{ follower.username }}</div>
+{% for follow in user.user_follower.all %}
+<div class="followers">{{ follow.username }}</div>
 {% endfor %}
 <div class="button-links">
-    <a href="{% url 'follower' user.pk %}">Add Follower</a>
+    <a href="{% url 'follow' user.pk %}">Add Follower</a>
 </div>
+<br>
 
 
 
