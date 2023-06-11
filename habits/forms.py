@@ -1,5 +1,5 @@
 from django import forms
-from .models import Tracker, Record, Profile
+from .models import Tracker, Record, Profile, Follower
 
 
 class TrackerForm(forms.ModelForm):
@@ -22,4 +22,5 @@ class ProfileForm(forms.ModelForm):
 
 class FollowerForm(forms.ModelForm):
     class Meta:
-        pass
+        model: Follower
+        fields = ('username')
