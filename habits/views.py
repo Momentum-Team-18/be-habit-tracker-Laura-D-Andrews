@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Tracker, User, Record, Profile
-from .forms import TrackerForm, RecordForm, ProfileForm
+from .models import Tracker, User, Record, Profile, Follower
+from .forms import TrackerForm, RecordForm, ProfileForm, FollowerForm
 # Create your views here.
 
 
@@ -127,3 +127,15 @@ def delete_submission(request, pk):
     tracker_pk = record.tracker_id
     record.delete()
     return redirect('tracker-detail', tracker_pk)
+
+
+def follower(request, pk):
+    if request.method == "GET":
+        form = FollowerForm()
+
+    else:
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            follower.save()
+            return redirect('user-info', pk=pk)
+    return render(request, 'habits/follower.html', {'form': form})

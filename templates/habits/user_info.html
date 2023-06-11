@@ -39,6 +39,14 @@
 </div>
 <br>
 
+<h2>Followers</h2>
+{% for follower in followers %}
+<div>{{ follower.username }}</div>
+{% endfor %}
+<div class="button-links">
+    <a href="{% url 'follower' user.pk %}">Add Follower</a>
+</div>
+
 
 
 

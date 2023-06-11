@@ -83,3 +83,12 @@ class Record(models.Model):
 
     def __str__(self):
         return self.tracker
+
+
+class Follower(models.Model):
+    username = models.CharField(max_length=20)
+    user = models.ForeignKey(
+        to=User, on_delete=models.CASCADE, related_name='user_follower')
+
+    def __str__(self):
+        return self.username

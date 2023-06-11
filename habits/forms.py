@@ -18,3 +18,8 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('birthdate', 'occupation', 'postcode')
+
+
+class FollowerForm(forms.ModelForm):
+    class Meta:
+        pass

@@ -37,4 +37,5 @@ urlpatterns = [
          views.delete_submission, name='delete-submission'),
     path('record/<int:pk>/edit-submission',
          views.edit_submission, name="edit-submission"),
+    path('follower/<int:pk>', views.follower, name='follower'),
 ]
