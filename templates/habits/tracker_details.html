@@ -28,12 +28,16 @@
                 <br>
             </div>
             <div>
-                <h3>Average goal met/not met:</h3>
+                <h3>Ratio goal met/not met:</h3>
+                {% if false_occurences != 0 %}
                 {% if true_occurences|div:false_occurences >= 0.5 %}
                 <h3 class="good-average">{{ true_occurences|div:false_occurences }}</h3>
                 {% else %}
                 <h3 class="bad-average">{{ true_occurences|div:false_occurences }}</h3>
                 {% endif %} 
+                {% else %}
+                <h3 class="new-ratio">{{ true_occurences }}</h3>
+                {% endif %}
                 <br>
             </div>
         </div> 
