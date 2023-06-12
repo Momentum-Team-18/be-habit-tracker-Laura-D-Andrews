@@ -1,58 +1,46 @@
 {% extends 'base.html' %}
-{% block title %}User{% endblock %}
+{% block title %}<title>Home</title>{% endblock %}
 {% block content %}
-<h2>Your Trackers</h2>
 <div class="list-container">
-    <br>
-{% for tracker in trackers %}
-<div class="individual-container">
-<div class="tracker-list"><a href="{% url 'tracker-detail' tracker.pk %}">{{ tracker.goal }}</a></div>
-<div class="created-at">Est. {{ tracker.created_at }}</div>
+    <h2>Your Trackers</h2>
+        {% for tracker in trackers %}
+        <div class="individual-container">
+            <div class="tracker-list"><a href="{% url 'tracker-detail' tracker.pk %}">{{ tracker.goal }}</a></div>
+            <div class="created-at">Est. {{ tracker.created_at }}</div>
+        </div>
+        {% endfor %}     
+        <div class="button-links">
+            <a href="{% url 'create-tracker' user.pk %}">Add Tracker</a>
+        </div>
 </div>
-{% endfor %}
-</div>
-<div class="button-links">
-    <a href="{% url 'create-tracker' user.pk %}">Add Tracker</a>
-</div>
-<br>
-<br>
-<br>
+    <div class="profile-box">
+        <h2>Profile</h2>
+        <div class="profile-info">
+            <p>Username: {{ user.username }}</p>
+            <p>Email: {{ user.email }}</p>
 
-<h2>Profile</h2>
-<div class="profile-box">
-    <div class="profile-info">
-        <p>Username: {{ user.username }}</p>
-        <p>Email: {{ user.email }}</p>
-
-        {% for profile in user.user_profile.all %}
-        <p>Birthday: {{ profile.birthdate }}</p> 
-        <p>Postal Code: {{ profile.postcode }}</p>
-        <p>Occupation: {{ profile.occupation }}</p>
-        {% endfor %}
+            {% for profile in user.user_profile.all %}
+            <p>Birthday: {{ profile.birthdate }}</p> 
+            <p>Postal Code: {{ profile.postcode }}</p>
+            <p>Occupation: {{ profile.occupation }}</p>
+        </div>
+            {% endfor %} 
+        <div class="button-container">
+            <div class="button-links">
+                <a href="{% url 'profile-add' user.pk %}">Add Profile Details</a>
+            </div>
+            <div class="button-links">
+                <a href="{% url 'profile-edit' user.pk %}">Edit Profile Details</a>
+            </div>
+        </div>
+    </div>
+<div class="follower-box">
+<h2>Followers</h2>
+    {% for follow in user.user_follower.all %}
+    <div class="followers">{{ follow.username }}</div>
+    {% endfor %}
+    <div class="button-links">
+        <a href="{% url 'follow' user.pk %}">Add Follower</a>
     </div>
 </div>
-<div class="button-links">
-    <a href="{% url 'profile-add' user.pk %}">Add Profile Details</a>
-</div>
-<br>
-<div class="button-links">
-    <a href="{% url 'profile-edit' user.pk %}">Edit Profile Details</a>
-</div>
-<br>
-<br>
-<br>
-
-<h2>Followers</h2>
-{% for follow in user.user_follower.all %}
-<div class="followers">{{ follow.username }}</div>
-{% endfor %}
-<div class="button-links">
-    <a href="{% url 'follow' user.pk %}">Add Follower</a>
-</div>
-<br>
-
-
-
-
-
 {% endblock %}
